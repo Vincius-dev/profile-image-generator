@@ -1,16 +1,52 @@
 import { getColorIterator } from "./utils/colors/color.js"
-import sample from "./examples/widget00.js"
+import blob from "./utils/blob/blob.js"
 
 function widget(key, draw) {
-    
     let nextColor = getColorIterator(key)
-
-    draw.rect().size(500,500).move(250,250).fill(nextColor())
-    draw.circle().size(350).move(400,325).fill(nextColor()).opacity(0.5)
-    draw.circle().size(350).move(250,325).fill(nextColor()).opacity(0.5)
     
-    // Descomente linha abaixo para ver exemplo 0
-    //sample(key,draw)
+    const canvasWidth = 1400;
+    const canvasHeight = 1400;
+
+    const shapeSize = 20;
+    const shapeSpacing = key.next256() % 10 + 5; 
+    const shapeCountX = Math.floor(canvasWidth / (shapeSize + shapeSpacing));
+    const shapeCountY = Math.floor(canvasHeight / (shapeSize + shapeSpacing));
+
+    let shapeType = key.next() % 4;
+
+    draw.rect(canvasWidth, canvasHeight).fill(nextColor());
+
+    for (let i = 0; i < shapeCountX; i++) {
+        for (let j = 0; j < shapeCountY; j++) {
+            const x = i * (shapeSize + shapeSpacing) + Math.random() * shapeSpacing;
+            const y = j * (shapeSize + shapeSpacing) + Math.random() * shapeSpacing;
+
+            if (shapeType === 1) {
+                draw.polygon([
+                    [x, y],
+                    [x + shapeSize + key.next(), y],
+                    [x + shapeSize + key.next() / 2, y + shapeSize + key.next()]
+                ]).fill(nextColor()).opacity(0.5);
+
+                shapeType = key.next() % 3;
+                
+            } else if (shapeType === 2) {
+                draw.circle().radius(shapeSize + key.next() / 2).center(x + shapeSize + key.next() / 2, y + shapeSize + key.next() / 2).fill(nextColor()).opacity(0.5);
+
+            } else if (shapeType === 3) {
+                draw.rect(shapeSize + key.next(), shapeSize + key.next()).x(x + Math.random() * shapeSpacing).y(y + Math.random() * shapeSpacing).fill(nextColor()).opacity(0.5);
+
+            } else if (shapeType === 4) {
+                let b = blob(key.next256())
+                console.log(b);
+                b.fill(nextColor()).opacity(0.5)
+                b.move(key.next(),key.next256()).size(key.next())
+                b.addTo(draw)
+            }
+
+            shapeType = key.next() % 4;
+        }
+    }
 }
 
 export default widget
