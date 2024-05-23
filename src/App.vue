@@ -1,7 +1,7 @@
 <template>
-  <div class="">
+  <div class="bg-cyan-800 h-screen">
     <topbar />
-    <section class="text-gray-600 body-font">
+    <section class="text-black text-bold body-font">
       <div class="container mx-auto w-full md:w-1/2">
         <div class="">
           <keyinput @keyChanged="keyChanged"/>
