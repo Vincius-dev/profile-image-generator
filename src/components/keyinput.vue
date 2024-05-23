@@ -2,13 +2,13 @@
     <div class="flex items-center justify-center">
         <div class="flex items-center justify-between">
             <h1 class="title-font sm:text-3xl text-2xl mb-4 font-medium text-gray-900">
-                Digite um identificador
+                Digite um valor para gerar sua foto de perfil
             </h1>
         </div>
         <div class="w-full flex items-center justify-center gap-2">
             <div class="">
                 <input @keyup="updateID" v-model="id" type="text" id="hero-field" name="hero-field"
-                    class="w-full bg-gray-100 rounded border bg-opacity-50 border-gray-300 focus:ring-2 focus:ring-indigo-200 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    class="w-full bg-gray-100 rounded border bg-opacity-50 border-gray-300 focus:ring-2 focus:ring-indigo-200 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
             </div>
             <div>
                 <q-btn round size="sm" class="bg-gray-300" @click="keyView">
