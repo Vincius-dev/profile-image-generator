@@ -31,10 +31,10 @@ function widget(key, draw) {
                 shapeType = key.next() % 3;
                 
             } else if (shapeType === 2) {
-                draw.circle().radius(shapeSize + key.next() / 2).center(x + shapeSize + key.next256() / 2, y + shapeSize + key.next() / 2).fill(nextColor()).opacity(0.5);
+                draw.circle().radius(shapeSize + key.next() / 2).center(x + shapeSize + key.next256() / 2, y + shapeSize + key.next256() / 2).fill(nextColor()).opacity(0.5);
 
             } else if (shapeType === 3) {
-                draw.rect(shapeSize + key.next(), shapeSize + key.next()).x(x + key.next256() * shapeSpacing).y(y + key.next() * shapeSpacing).fill(nextColor()).opacity(0.5);
+                draw.rect(shapeSize + key.next(), shapeSize + key.next()).x(x + key.next256() * shapeSpacing).y(y + key.next256() * shapeSpacing).fill(nextColor()).opacity(0.5);
 
             } else if (shapeType === 4) {
                 let b = blob(key.next256())
