@@ -18,8 +18,8 @@ function widget(key, draw) {
 
     for (let i = 0; i < shapeCountX; i++) {
         for (let j = 0; j < shapeCountY; j++) {
-            const x = i * (shapeSize + shapeSpacing) + Math.random() * shapeSpacing;
-            const y = j * (shapeSize + shapeSpacing) + Math.random() * shapeSpacing;
+            const x = (i * (shapeSize + shapeSpacing) + key.next() * shapeSpacing) % canvasWidth;
+            const y = (j * (shapeSize + shapeSpacing) + key.next256() * shapeSpacing) % canvasHeight;
 
             if (shapeType === 1) {
                 draw.polygon([
@@ -31,10 +31,10 @@ function widget(key, draw) {
                 shapeType = key.next() % 3;
                 
             } else if (shapeType === 2) {
-                draw.circle().radius(shapeSize + key.next() / 2).center(x + shapeSize + key.next() / 2, y + shapeSize + key.next() / 2).fill(nextColor()).opacity(0.5);
+                draw.circle().radius(shapeSize + key.next() / 2).center(x + shapeSize + key.next256() / 2, y + shapeSize + key.next() / 2).fill(nextColor()).opacity(0.5);
 
             } else if (shapeType === 3) {
-                draw.rect(shapeSize + key.next(), shapeSize + key.next()).x(x + Math.random() * shapeSpacing).y(y + Math.random() * shapeSpacing).fill(nextColor()).opacity(0.5);
+                draw.rect(shapeSize + key.next(), shapeSize + key.next()).x(x + key.next256() * shapeSpacing).y(y + key.next() * shapeSpacing).fill(nextColor()).opacity(0.5);
 
             } else if (shapeType === 4) {
                 let b = blob(key.next256())
