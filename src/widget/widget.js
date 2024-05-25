@@ -26,21 +26,32 @@ function widget(key, draw) {
                     [x, y],
                     [x + shapeSize + key.next(), y],
                     [x + shapeSize + key.next() / 2, y + shapeSize + key.next()]
-                ]).fill(nextColor()).opacity(0.5);
+                ])
+                    .fill(nextColor())
+                    .opacity(0.5);
 
                 shapeType = key.next() % 3;
                 
             } else if (shapeType === 2) {
-                draw.circle().radius(shapeSize + key.next() / 2).center(x + shapeSize + key.next256() / 2, y + shapeSize + key.next256() / 2).fill(nextColor()).opacity(0.5);
+                draw.circle()
+                    .radius(shapeSize + key.next() / 2)
+                    .center(x + shapeSize + key.next256() / 2, y + shapeSize + key.next256() / 2)
+                    .fill(nextColor())
+                    .opacity(0.5);
 
             } else if (shapeType === 3) {
-                draw.rect(shapeSize + key.next(), shapeSize + key.next()).x(x + key.next256() * shapeSpacing).y(y + key.next256() * shapeSpacing).fill(nextColor()).opacity(0.5);
+                draw.rect(shapeSize + key.next(), shapeSize + key.next()).x(x + key.next256() * shapeSpacing)
+                    .y(y + key.next256() * shapeSpacing)
+                    .fill(nextColor())
+                    .opacity(0.5);
 
             } else if (shapeType === 4) {
                 let b = blob(key.next256())
-                console.log(b);
-                b.fill(nextColor()).opacity(0.5)
-                b.move(key.next(),key.next256()).size(key.next())
+                
+                b.fill(nextColor())
+                    .opacity(0.5)
+                b.move(key.next(),key.next256())
+                    .size(key.next())
                 b.addTo(draw)
             }
 
